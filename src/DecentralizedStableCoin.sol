@@ -23,10 +23,10 @@
 // private
 // view & pure functions
 
-pragma solidity ^0.8.19; 
+pragma solidity ^0.8.19;
 
-import { ERC20Burnable, ERC20 } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
-import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import {ERC20Burnable, ERC20} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title DecentralizedStableCoin
@@ -34,11 +34,10 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
  * Collateral: Exogenous (ETH & BTC)
  * Minting: Algorithmic
  * Relative Stability: Pegged to USD
- * 
+ *
  * This is the contract meant to be owned by DSCEngine. It is a ERC20 token that can be minted and burned by the DSCEngine smart contract.
- * 
- */ 
-
+ *
+ */
 contract DecentralizedStableCoin is ERC20Burnable, Ownable {
     error DecentralizedStableCoin__AmountMustBeMoreThanZero();
     error DecentralizedStableCoin__BurnAmountExceedsBalance();
@@ -52,7 +51,7 @@ contract DecentralizedStableCoin is ERC20Burnable, Ownable {
     Related code changes can be viewed in this commit:
     https://github.com/OpenZeppelin/openzeppelin-contracts/commit/13d5e0466a9855e9305119ed383e54fc913fdc60
     */
-    constructor() ERC20("DecentralizedStableCoin", "DSCH") Ownable(0x79b89b6cB4dcf24352F20D7C99E499eBDc24cC51){ }
+    constructor() ERC20("DecentralizedStableCoin", "DSCH") Ownable(0x79b89b6cB4dcf24352F20D7C99E499eBDc24cC51) {}
 
     function burn(uint256 _amount) public override onlyOwner {
         uint256 balance = balanceOf(msg.sender);
